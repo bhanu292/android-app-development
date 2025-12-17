@@ -1,30 +1,26 @@
-package com.example.interactiveapp
+package com.example.firstdemoapp
 
 import android.os.Bundle
-import android.text.Layout
 import android.widget.Button
-import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_main)
+       val buttonUpload = findViewById<Button>(R.id.btnUpload)
+        val buttonDownload = findViewById<Button>(R.id.btnDownload)
 
-        val buttonDark = findViewById<Button>(R.id.btnDark)
-        val buttonRead = findViewById<Button>(R.id.bthRead)
-        val layout = findViewById<LinearLayout>(R.id.linearLayout)
-
-        buttonRead.setOnClickListener {
-            layout.setBackgroundResource(R.color.Yellow)
+        buttonUpload.setOnClickListener {
+            Toast.makeText(applicationContext,"Uploading..", Toast.LENGTH_SHORT).show()
         }
-        buttonDark.setOnClickListener {
-            layout.setBackgroundResource(R.color.black)
+        buttonDownload.setOnClickListener {
+            Toast.makeText(applicationContext,"Downloading..", Toast.LENGTH_SHORT).show()
         }
-
+        }
     }
-}
