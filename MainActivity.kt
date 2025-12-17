@@ -1,8 +1,8 @@
-package com.example.firstdemoapp
+package com.example.webview
 
 import android.os.Bundle
-import android.widget.Button
-import android.widget.Toast
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -11,16 +11,19 @@ import androidx.core.view.WindowInsetsCompat
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_main)
-       val buttonUpload = findViewById<Button>(R.id.btnUpload)
-        val buttonDownload = findViewById<Button>(R.id.btnDownload)
 
-        buttonUpload.setOnClickListener {
-            Toast.makeText(applicationContext,"Uploading..", Toast.LENGTH_SHORT).show()
-        }
-        buttonDownload.setOnClickListener {
-            Toast.makeText(applicationContext,"Downloading..", Toast.LENGTH_SHORT).show()
-        }
+        val webViewVariable = findViewById<WebView>(R.id.webView)
+        webViewSetUp(webViewVariable)
+    }
+    private fun webViewSetUp(a: WebView) {
+
+        a.webViewClient = WebViewClient()
+
+        a.apply {
+            settings.javaScriptEnabled=true
+            settings.safeBrowsingEnabled=true
+            loadUrl("https://github.com/bhanu292")
         }
     }
+}
