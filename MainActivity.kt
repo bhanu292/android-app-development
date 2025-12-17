@@ -1,29 +1,35 @@
-package com.example.webview
+package com.example.implicitintent
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import android.webkit.WebView
-import android.webkit.WebViewClient
+import android.provider.MediaStore
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import java.net.URI
+
+
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val webViewVariable = findViewById<WebView>(R.id.webView)
-        webViewSetUp(webViewVariable)
-    }
-    private fun webViewSetUp(a: WebView) {
+        val webButton = findViewById<CardView>(R.id.cardWeb)
+        val cameraButton = findViewById<CardView>(R.id.cardCamera)
 
-        a.webViewClient = WebViewClient()
-
-        a.apply {
-            settings.javaScriptEnabled=true
-            settings.safeBrowsingEnabled=true
-            loadUrl("https://github.com/bhanu292")
+        webButton.setOnClickListener {
+         val intent= Intent(Intent.ACTION_VIEW)
+            intent.data = Uri.parse("https://github.com/bhanu292")
+            startActivity(intent)
         }
+        cameraButton.setOnClickListener {
+        val intent= Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            startActivity(intent)
+        }
+
     }
 }
