@@ -1,9 +1,9 @@
-package com.example.counterapp;
+package com.example.fuelextimateapp;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -13,8 +13,6 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
-
-    int count = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,46 +24,35 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        //1-Create object
+        Button btnCost;
+        EditText txtDist;
+        EditText txtEffc;
+        EditText txtPrice;
+        TextView txtCost;
 
+        //2-Bind UI to Java object
+        btnCost = findViewById(R.id.btnCost);
+        txtCost = findViewById(R.id.txtFuelCost);
 
+        txtDist = findViewById(R.id.TxtDist);
+        txtEffc = findViewById(R.id.txtEffc);
+        txtPrice = findViewById(R.id.txtPrice);
 
-        //1-create object
-        Button btnCount;
-        TextView txtCount;
-        Button btnReset;
-
-        Button btnFuelApp,btnUserApp;
-
-        //2-Bind UI with Java Class
-        btnCount = findViewById(R.id.btnCount);
-        txtCount = findViewById(R.id.txtCount);
-        btnReset = findViewById(R.id.btnReset);
-
-        btnFuelApp = findViewById(R.id.btnFuelApp);
-        btnUserApp = findViewById(R.id.btnUserApp);
-
-        //3-On Click Listener
-        btnCount.setOnClickListener(new View.OnClickListener() {
+        btnCost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                count++;
-                txtCount.setText("" + count);
+                String dist = txtDist.getText().toString();
+                String effc = txtEffc.getText().toString();
+                String price = txtPrice.getText().toString();
 
-            }
-        });
-        btnReset.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                count = 0;
-                txtCount.setText(""+count);
-            }
-        });
-        btnUserApp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this, myLinear.class);
+                int d = Integer.getInteger(dist);
+                int e = Integer.getInteger(effc);
+                int p = Integer.getInteger(price);
 
-                startActivity(i);
+                int ans =  (d / e) * p;
+
+                txtCost.setText("" + ans + "PKR");
             }
         });
     }
